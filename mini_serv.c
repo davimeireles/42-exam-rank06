@@ -95,6 +95,7 @@ void add_new_client(int fd)
 	id[fd] = total_clients++;
 	msg[fd] = NULL;
 	FD_SET(fd, &active_fd);
+	bzero(&write_buffer, sizeof(write_buffer));
 	sprintf(write_buffer, "server: client %d just arrived\n", id[fd]);
 	send_to_all(fd, write_buffer);
 }
